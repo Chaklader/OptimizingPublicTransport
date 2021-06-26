@@ -26,8 +26,8 @@ class Weather(Producer):
     key_schema = None
     value_schema = None
 
-    winter_months = set((0, 1, 2, 3, 10, 11))
-    summer_months = set((6, 7, 8))
+    winter_months = {0, 1, 2, 3, 10, 11}
+    summer_months = {6, 7, 8}
 
     def __init__(self, month):
         #
