@@ -10,6 +10,10 @@ from models.turnstile_hardware import TurnstileHardware
 logger = logging.getLogger(__name__)
 
 
+# A topic is created for each turnstile for each station in Kafka to track the turnstile events
+# The station emits a turnstile event to Kafka whenever the Turnstile.run() function is called.
+# Events emitted to Kafka are paired with the Avro key and value schemas
+
 class Turnstile(Producer):
     key_schema = avro.load(f"{Path(__file__).parents[0]}/schemas/turnstile_key.json")
     value_schema = avro.load(
