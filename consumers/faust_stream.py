@@ -1,6 +1,6 @@
 """Defines trends calculations for stations"""
-import logging
 
+import logging
 import faust
 
 logger = logging.getLogger(__name__)

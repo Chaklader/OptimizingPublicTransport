@@ -3,7 +3,6 @@ import json
 import logging
 
 import requests
-
 import topic_check
 
 
