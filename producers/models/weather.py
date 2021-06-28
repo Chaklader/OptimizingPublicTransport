@@ -8,7 +8,7 @@ import urllib.parse
 
 import requests
 
-from models.producer import Producer
+from producers.models.producer import Producer
 
 logger = logging.getLogger(__name__)
 
@@ -29,20 +29,17 @@ class Weather(Producer):
     summer_months = {6, 7, 8}
 
     def __init__(self, month):
-        #
-        #
-        # TODO: Complete the below by deciding on a topic name, number of partitions, and number of
-        # replicas
-        #
-        #
         super().__init__(
-            "weather",  # TODO: Come up with a better topic name
+            "weather",
             key_schema=Weather.key_schema,
             value_schema=Weather.value_schema,
+            # num_partitions=3,
+            # num_replicas=3
         )
 
         self.status = Weather.status.sunny
         self.temp = 70.0
+
         if month in Weather.winter_months:
             self.temp = 40.0
         elif month in Weather.summer_months:

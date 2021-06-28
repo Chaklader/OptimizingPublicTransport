@@ -4,7 +4,6 @@ import logging
 
 from models import Line
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -19,6 +18,7 @@ class Lines:
 
     def process_message(self, message):
         """Processes a station message"""
+
         if "org.chicago.cta.station" in message.topic():
             value = message.value()
             if message.topic() == "org.chicago.cta.stations.table.v1":

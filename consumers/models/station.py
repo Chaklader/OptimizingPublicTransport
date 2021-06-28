@@ -2,7 +2,6 @@
 import json
 import logging
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -21,7 +20,11 @@ class Station:
     @classmethod
     def from_message(cls, value):
         """Given a Kafka Station message, creates and returns a station"""
-        return Station(value["station_id"], value["station_name"], value["order"])
+        return Station(
+            value["station_id"],
+            value["station_name"],
+            value["order"]
+        )
 
     def handle_departure(self, direction):
         """Removes a train from the station"""

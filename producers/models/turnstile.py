@@ -4,17 +4,14 @@ from pathlib import Path
 
 from confluent_kafka import avro
 
-from models.producer import Producer
-from models.turnstile_hardware import TurnstileHardware
+from producers.models.producer import Producer
+from producers.models.turnstile_hardware import TurnstileHardware
 
 logger = logging.getLogger(__name__)
 
 
-# A topic is created for each turnstile for each station in Kafka to track the turnstile events
-# The station emits a turnstile event to Kafka whenever the Turnstile.run() function is called.
-# Events emitted to Kafka are paired with the Avro key and value schemas
-
 class Turnstile(Producer):
+    """A topic is created for each turnstile for each station in Kafka to track the turnstile events"""
     key_schema = avro.load(f"{Path(__file__).parents[0]}/schemas/turnstile_key.json")
     value_schema = avro.load(
         f"{Path(__file__).parents[0]}/schemas/turnstile_value.json"
@@ -35,7 +32,9 @@ class Turnstile(Producer):
 
     def run(self, timestamp, time_step):
         """Simulates riders entering through the turnstile."""
+
         num_entries = self.turnstile_hardware.get_entries(timestamp, time_step)
+
         for _ in range(num_entries):
             self.producer.produce(
                 topic=self.topic_name,

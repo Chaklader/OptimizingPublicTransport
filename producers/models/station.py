@@ -1,11 +1,12 @@
 """Methods pertaining to loading and configuring CTA "L" station data."""
+
 import logging
 from pathlib import Path
 
 from confluent_kafka import avro
 
-from models import Turnstile
-from models.producer import Producer
+from producers.models import Turnstile
+from producers.models.producer import Producer
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +27,7 @@ class Station(Producer):
                 .replace("'", "")
         )
 
-        topic_name = f"{station_name}"  # TODO: Come up with a better topic name
+        topic_name = f"{station_name}"
         super().__init__(
             topic_name,
             key_schema=Station.key_schema,
