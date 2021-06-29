@@ -2,7 +2,7 @@
 import json
 import logging
 
-from consumers.models import Station
+from models import Station
 
 logger = logging.getLogger(__name__)
 
