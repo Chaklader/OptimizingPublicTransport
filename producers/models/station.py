@@ -5,8 +5,8 @@ from pathlib import Path
 
 from confluent_kafka import avro
 
-from producers.models import Turnstile
-from producers.models.producer import Producer
+from models import Turnstile
+from models.producer import Producer
 
 logger = logging.getLogger(__name__)
 

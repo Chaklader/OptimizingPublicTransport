@@ -8,7 +8,7 @@ import urllib.parse
 
 import requests
 
-from producers.models.producer import Producer
+from models.producer import Producer
 
 logger = logging.getLogger(__name__)
 
