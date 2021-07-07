@@ -11,6 +11,9 @@ logger = logging.getLogger(__name__)
 
 KSQL_URL = "http://localhost:8088"
 
+# 1. create a `turnstile` table from your turnstile topic and make sure to use 'avro' datatype!
+# 2. create a `turnstile_summary` table by selecting from the `turnstile` table and grouping on station_id.
+# Make sure to cast the COUNT of station id to `count` and Make sure to set the value format to JSON
 
 KSQL_STATEMENT = """
 CREATE TABLE turnstile (

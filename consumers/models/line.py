@@ -75,7 +75,8 @@ class Line:
         # Based on the message topic, call the appropriate handler.
         value = message.value()
 
-        if message.topic() == "stations.table":  # Set the conditional correctly to the stations Faust Table
+        # Set the conditional correctly to the stations Faust Table
+        if message.topic() == 'org.chicago.cta.stations.table.v1':
             try:
                 value = json.loads(value)
                 self._handle_station(value)
@@ -83,10 +84,12 @@ class Line:
             except Exception as e:
                 logger.fatal("bad station? %s, %s", value, e)
 
-        elif message.topic().startswith("station"):  # Set the conditional to the arrival topic
+        # Set the conditional to the arrival topic
+        elif message.topic() == 'org.chicago.cta.station.arrivals.v1':
             self._handle_arrival(message)
 
-        elif message.topic() == "turnstile_summary":  # Set the conditional to the KSQL Turnstile Summary Topic
+        # Set the conditional to the KSQL Turnstile Summary Topic
+        elif message.topic() == "TUNRSTILE_SUMMARY":
 
             json_data = json.loads(message.value())
             station_id = json_data.get("STATION_ID")
