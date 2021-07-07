@@ -6,6 +6,8 @@ import faust
 logger = logging.getLogger(__name__)
 
 
+# TODO: there is no id attribute in your station
+
 # Faust will ingest records from Kafka in this format
 class Station(faust.Record):
     stop_id: int
@@ -31,6 +33,8 @@ class TransformedStation(faust.Record):
 # Define a Faust Stream that ingests data from the Kafka Connect stations topic and
 # places it into a new topic with only the necessary information.
 app = faust.App("stations-stream", broker="kafka://localhost:9092", store="memory://")
+
+# Define the input Kafka Topic that used for Kafka Connect output.
 topic = app.topic("postgres_conn_stations", value_type=Station)
 out_topic = app.topic("stations.table", partitions=1)
 
@@ -63,7 +67,7 @@ async def transform(stations):
             line=line
         )
 
-        table[station.id] = transformed_station
+        table[station.station_id] = transformed_station
 
 
 if __name__ == "__main__":

@@ -7,6 +7,11 @@ from models import Station
 logger = logging.getLogger(__name__)
 
 
+# All Blue, Green, and Red Line stations appear in the Transit Status UI.
+#
+# TODO:  Line consumer should consume messages from the consistent station topic name
+# TODO:  Your consumer should use the message_handler to process the incoming messages
+
 class Line:
     """Defines the Line Model"""
 

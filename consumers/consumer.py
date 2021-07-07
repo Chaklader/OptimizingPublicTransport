@@ -9,6 +9,7 @@ from tornado import gen
 
 logger = logging.getLogger(__name__)
 
+# TODO: Your consumer should use the message_handler to process the incoming messages
 
 class KafkaConsumer:
     """Defines the base kafka consumer class"""

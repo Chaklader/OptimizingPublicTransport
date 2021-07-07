@@ -7,7 +7,6 @@ import pandas as pd
 
 from models.producer import Producer
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -21,7 +20,7 @@ class TurnstileHardware:
         TurnstileHardware._load_data()
         self.metrics_df = TurnstileHardware.seed_df[
             TurnstileHardware.seed_df["station_id"] == station.station_id
-        ]
+            ]
         self.weekday_ridership = int(
             round(self.metrics_df.iloc[0]["avg_weekday_rides"])
         )
@@ -47,7 +46,7 @@ class TurnstileHardware:
         """Returns the number of turnstile entries for the given timeframe"""
         hour_curve = TurnstileHardware.curve_df[
             TurnstileHardware.curve_df["hour"] == timestamp.hour
-        ]
+            ]
         ratio = hour_curve.iloc[0]["ridership_ratio"]
         total_steps = int(60 / (60 / time_step.total_seconds()))
 
