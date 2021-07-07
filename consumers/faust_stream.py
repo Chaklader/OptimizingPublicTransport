@@ -36,7 +36,7 @@ app = faust.App("stations-stream", broker="kafka://localhost:9092", store="memor
 
 # Define the input Kafka Topic that used for Kafka Connect output.
 topic = app.topic("postgres_conn_stations", value_type=Station)
-out_topic = app.topic("stations.table", partitions=1)
+out_topic = app.topic("org.chicago.cta.stations.table.v1", partitions=1)
 
 table = app.Table(
     "transformed_station",

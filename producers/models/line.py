@@ -5,7 +5,6 @@ import logging
 
 from models import Station, Train
 
-
 logger = logging.getLogger(__name__)
 
 

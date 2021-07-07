@@ -16,7 +16,6 @@ logging.config.fileConfig(f"{Path(__file__).parents[0]}/logging.ini")
 from connector import configure_connector
 from models import Line, Weather
 
-
 logger = logging.getLogger(__name__)
 
 
